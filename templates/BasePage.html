@@ -1,0 +1,52 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block pageTitle %}{% endblock %}</title>
+	<link rel="stylesheet" href="/static/css/index.css">
+	{% block css %}
+	{% endblock %}
+
+	{% block js %}
+	{% endblock %}
+</head>
+<body>
+
+	<div id="wraper" >
+
+		<div id="banner" >
+			<img src="/static/images/logo.png">
+		</div>
+
+		<div id="menu" align="center">
+			<ul>
+				<li><a href="/">首頁</a></li>
+				<li><a href="/product/">購物</a></li>
+				<li><a href="/travel/">景點</a></li>
+				<li><a href="/contact/">聯絡我們</a></li>
+
+				{% if request.session.isAlive %}
+					<li><a href="/member/">會員管理</a></li>
+					<li><a href="/orderlist/">我的訂單</a></li>
+					<li><a href="/logout/">會員登出</a></li>
+				{% else %}
+					<li><a href="/login/">會員登入</a></li>
+				{% endif %}
+
+			</ul>
+		</div>
+
+		<div id="content" >
+			{% block mainContent %}
+			{% endblock %}
+		</div>
+
+
+	</div>
+
+	<div id="footer" >
+		<span>@ Carol 製作 All rights reserved.</span>
+	</div>
+
+</body>
+</html>

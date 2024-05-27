@@ -1,0 +1,46 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+我的訂單明細
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/cart.css">
+{% endblock %}
+
+{% block mainContent %}
+
+	<div style="margin-top: 100px"></div>
+	<div id="maindiv">
+		
+
+				<p class="title">訂單資料</p>
+
+				<p style="color: #ff0000;">{{msg}}</p>
+
+				<table width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
+					
+					<tr>
+						<th align="center" bgcolor="#cccccc">訂單日期</th>
+						<th width="80" align="center" bgcolor="#cccccc">編號</th>
+						<th width="80" align="center" bgcolor="#cccccc">總額</th>
+						<th width="100" align="center" bgcolor="#cccccc">付款方式</th>
+					</tr>
+
+
+					{% for unit in order %}
+
+						<tr>
+							<td align="center" bgcolor="#ffffff">{{unit.create_date}}</td>
+							<td width="80" align="center" bgcolor="#ffffff">{{unit.id}}</td>
+							<td width="80" align="center" bgcolor="#ffffff">{{unit.granttotal}}</td>
+							<td width="100" align="center" bgcolor="#ffffff">{{unit.paytype}}</td>
+						</tr>
+					{% endfor %}
+					
+				</table>
+
+	</div>
+
+
+{% endblock %}

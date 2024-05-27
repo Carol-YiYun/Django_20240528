@@ -1,0 +1,72 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+圖片上傳
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/photos.css">
+{% endblock %}
+
+{% block mainContent %}
+
+<div style="height: 50px;"></div>
+
+<section class="text-center">
+	<div class="container">
+		<h1>上傳圖片牆</h1>
+		<p>圖表列表</p>
+	</div>
+</section>
+
+<!-- 
+	當表單中需要上傳檔案時，在 form 裡面的屬性要加 enctype="multipart/form-data"
+	否則無法上傳檔案。
+-->
+
+<form action="" method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+
+	<div class="form-row">
+		<div class="form-group col-md-4">
+		</div>
+		<div class="form-group col-md-4">
+			{{ form.image }}
+		</div>
+		<div class="form-group col-md-4">
+		</div>
+	</div>
+
+	<div class="form-row">
+		<div class="form-group col-md-4">
+		</div>
+		<div class="form-group col-md-4">
+			<input type="submit" class="btn btn-primary" value="上傳" />
+		</div>
+		<div class="form-group col-md-4">
+		</div>
+	</div>
+	
+</form>
+
+<p></p>
+
+<div class="row">
+	{% for photo in photos %}
+
+		{% if photo.image %}
+
+			<div class="col-md-4">
+				<div class="card mb-4 shadow">
+					<img src="{{photo.image.url}}" class="card-img-top">
+				</div>
+			</div>
+
+		{% endif %}
+
+	{% endfor %}
+
+</div>
+
+
+{% endblock %}

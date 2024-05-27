@@ -1,0 +1,85 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+產品列表
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/product.css">
+{% endblock %}
+
+{% block mainContent %}
+
+
+<div id="goodsArea">
+
+	<div id="formSearch" >
+		<form action="" method="get">
+			
+			<fieldset>
+				<legend>查詢條件</legend>
+				<div>
+					<label for="goods">搜尋商品</label>
+					<input type="text" id="goods" name="goods" size="30" />
+				</div>
+
+				<div>
+					<label for="items">商品種類：</label>
+					<select id="items" name="items">
+						<option value="0" selected >無限制</option>
+						<option value="1">家電</option>
+						<option value="2">食品</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="price">搜尋價格：</label>
+					<input type="text" id="price" name="startprice" size="10" />
+					～
+					<input type="text" name="endprice" size="10" />
+				</div>
+
+				<div>
+					<button type="submit">查詢</button>
+				</div>
+
+
+			</fieldset>
+
+		</form>
+	</div>
+
+	{% for row in goods %}
+
+	<div class="info">
+		<a href="{{row.goods_url}}" target="_blank"><img src="{{row.photo_url}}"></a> 
+		<p>{{row.title}}</p>
+		<p style="color: red;">NT${{row.price}}</p>		
+		<a href="/addtocart/add/{{row.id}}/">Buy</a> <!-- 為了購物車加的 code -->
+	</div>
+
+	{% endfor %}
+
+	<div style="clear: both;margin: 70px; padding-top: 130px; text-align: center;">
+
+		{% if goods.has_previous %}
+
+			<a href="?page={{goods.previous_page_number}}&goods={{product}}&items={{items}}&startprice={{startp}}&endprice={{endp}}">上一頁</a>
+
+		{% endif %}
+
+		{% if goods.has_next %}
+
+			<a href="?page={{goods.next_page_number}}&goods={{product}}&items={{items}}&startprice={{startp}}&endprice={{endp}}">下一頁</a>
+
+		{% endif %}
+	
+	</div>
+
+</div>
+
+
+
+
+
+{% endblock %}

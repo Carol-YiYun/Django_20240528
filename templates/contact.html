@@ -1,0 +1,49 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+問題反應
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/contact.css">
+{% endblock %}
+
+{% block mainContent %}
+
+	<div style="margin-top: 100px;" ></div>
+
+	<div id="message">
+		<p class="subject">問題反應</p>
+
+		<form class="contact_form" action="" method="post">
+			{% csrf_token %}
+
+			<div class="form_group">
+				<label>姓名</label>
+				<input type="text" name="cuname" class="form-control" required />
+			</div>
+			<div class="form_group">
+				<label>Email</label> 
+				<input type="email" name="email" class="form-control" required />
+			</div>
+			<div class="form_group">
+				<label>主旨</label>
+				<input type="text" name="title" class="form-control" required />
+			</div>
+			<div class="form_group">
+				<label>問題內容</label>
+				<textarea name="content" rows="10" class="form-control" required></textarea>
+			</div>
+			<div class="form_group">
+				<button type="submit" class="btn_submit">送出訊息</button>
+			</div>
+			
+		</form>
+
+
+
+
+
+	</div>
+
+{% endblock %}

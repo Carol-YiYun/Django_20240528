@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>範例</title>
+</head>
+<body>
+
+	<!---
+		這是HTML註解
+	--->
+
+	{% comment %}
+		這是Django的多行註解，不會出現在網頁中
+	{% endcomment %}
+
+
+	<h1>{{name}}</h1>
+	<h1>{{age}}</h1>
+
+	{% if age >= 16 %}
+
+		<h1>南部要過成年禮！</h1>
+
+	{% endif %}
+
+	{% if age >= 30 %}
+
+		<h1>已經是輕熟男女了</h1>
+
+	{% else %}
+
+		<h1>原來是小鮮肉、少女呀！</h1>
+
+	{% endif %}
+
+
+	{% if score >= 90 %}
+		<h1>分數大於等於90分</h1>
+	{% elif score >= 80 %}
+		<h1>分數大於等於80分</h1>
+	{% elif score >= 70 %}
+		<h1>分數大於等於70分</h1>
+	{% elif score >= 60 %}
+		<h1>分數大於等於60分</h1>
+	{% else %}
+		<h1>分數不及格</h1>
+	{% endif %}
+
+
+	{% for row in listdata %}
+
+		{{row}}
+
+	{% endfor %}
+
+	<hr>
+
+	
+
+
+</body>
+</html>

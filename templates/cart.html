@@ -1,0 +1,103 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+購物車內容
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/cart.css">
+{% endblock %}
+
+{% block mainContent %}
+
+<script>
+
+	function confirmLink(message){
+		if (message == "") {
+			message = "確定";
+		}
+		document.returnValue = confirm(message);
+	}
+	
+</script>
+
+<!--<script>區塊裡是Javascript，confirm是固定的函式，不能改，returnValue是自定義的可以改。 -->
+
+<div style="margin-top: 100px;"></div>
+
+<div id="maindiv">
+	
+	<form action="/addtocart/update/" method="post" name="form1" id="form1">
+		{% csrf_token %} <!-- 只要form的method是post，就一定要加此行，為了防範駭客偽裝攻擊 -->
+
+		<table width="90%" border="0" align="center" cellpadding="4" cellspacing="0">
+			<tr>
+				<th width="60" align="center"><strong>取消</strong></th>
+				<th align="left"><strong>商品名稱</strong></th>
+				<th width="80" align="center"><strong>單價</strong></th>
+				<th width="80" align="center"><strong>數量</strong></th>
+				<th width="100" align="center"><strong>金額</strong></th>
+			</tr>
+
+			{% for unit in allcart %}
+
+				<tr>
+					<td bgcolor="#ffffff"><a href="/addtocart/remove/{{forloop.counter0}}" class="delcart" onclick="confirmLink('確定刪除這個商品嗎？'); return document.returnValue">刪除</a></td>
+					<!-- forloop.counter 是由1開始遞增到結束，forloop.counter0 是由0開始遞增到結束 
+						這裡從0開始，是因為串列的索引值是從0開始，ex. list[0] -->
+
+					<td align="left" bgcolor="#ffffff">{{unit.0}}</td> <!-- 商品名稱 -->
+					<!--每筆商品都是串列，ex:['商品名稱'(str), 單價(int), 數量(int), 總額(int)]，allcart是由串列組成的串列-->
+
+					<td width="80" align="center" bgcolor="#ffffff">NT$ {{unit.1}}</td> <!-- 單價 -->
+
+					<td width="80" align="center" bgcolor="#ffffff"><input type="text" name="qty{{forloop.counter0}}" id="qty{{forloop.counter0}}" value="{{unit.2}}" size="2"></td> <!-- 數量 -->
+
+					<td width="100" align="center" bgcolor="#ffffff"><strong>NT$ {{unit.3}}</strong>  </td> <!-- 總額 -->
+
+				</tr>
+
+
+			{% endfor %}
+
+			<tr>
+				<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
+				<td align="center" bgcolor="#ffffff" class="upline">NT$ {{total}}</td>
+			</tr>
+
+			<tr>
+				<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>運費：100 元</strong></td>
+				<td align="center" bgcolor="#ffffff" class="upline">NT$ 100</td>
+			</tr>
+
+			<tr>
+				<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>總計</strong></td>
+				<td align="center" bgcolor="#ffffff" class="upline"><strong><font color="#ff0000">NT$ {{granttotal}}</font></strong></td>
+			</tr>
+
+
+		</table>
+
+		<table border="0" align="center" cellpadding="10" cellspacing="0">
+			<tr>
+				<td><input type="button" name="Continue" value="繼續購物" onclick="window.location='/product/'" /></td>
+				<td><input type="submit" name="Submit" value="更新購物車" /></td>
+				<td><input type="button" name="Empty" value="清空購物車" onclick="window.location='/addtocart/empty/'" /></td>
+				<td><input type="button" name="Order" value="我要結帳" onclick="window.location='/cartorder/'" /></td>
+			</tr>
+
+
+		</table>
+
+
+	</form>
+
+
+</div>
+
+
+
+
+
+{% endblock %}
+

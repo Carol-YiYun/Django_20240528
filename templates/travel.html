@@ -1,0 +1,44 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+全球景點
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/travel.css">
+{% endblock %}
+
+{% block mainContent %}
+
+
+<div id="travelArea">
+
+	{% for travel in tours %}
+
+	<div class="info">
+		<img src="{{travel.photo_url}}">
+		<p>{{travel.title}}</p>
+		<p style="color: blue;">NT${{travel.discount}}</p>		
+	</div>
+
+	{% endfor %}
+
+	<div style="clear: both;margin: 70px; text-align: center;">
+
+		{% if tours.has_previous %}
+
+			<a href="?page={{tours.previous_page_number}}&tours={{product}}&startprice={{startp}}&endprice={{endp}}">上一頁</a>
+
+		{% endif %}
+
+		{% if tours.has_next %}
+
+			<a href="?page={{tours.next_page_number}}&tours={{product}}&startprice={{startp}}&endprice={{endp}}">下一頁</a>
+
+		{% endif %}
+	
+	</div>
+
+</div>
+
+{% endblock %}

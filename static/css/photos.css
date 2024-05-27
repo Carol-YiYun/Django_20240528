@@ -1,0 +1,29 @@
+
+.text-center{
+	margin-left: 40%;
+}
+
+.form-group{
+	margin-left: 40%;
+	padding: 2px;
+}
+
+.row{
+	clear: both;
+	width: 100%;
+}
+
+.card{
+	width: 15%;
+	float: left;
+	padding: 2%;
+}
+
+.card img{
+	width: 100%;
+}
+
+.col-md-4{
+	width: 100%;
+}
+

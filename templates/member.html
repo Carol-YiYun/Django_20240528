@@ -1,0 +1,35 @@
+{% extends "BasePage.html" %}
+
+{% block pageTitle %}
+會員專區
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/member.css">
+{% endblock %}
+
+{% block mainContent %}
+
+	<div style="margin-top: 50px;" ></div>
+
+	<h1 style="margin-left: 380px;">變更密碼</h1>
+
+	<center><p style="color: #ff0000;">{{msg}}</p></center>
+
+	<form action="/changepassword/" method="post">
+		{% csrf_token %}
+
+		<label>密碼：</label>
+		<input type="password" name="password" required />
+
+		<label>再次確認密碼：</label>
+		<input type="password" name="repassword" required />
+
+		<button type="submit">確認變更</button>
+
+
+
+	</form>
+
+
+{% endblock %}
