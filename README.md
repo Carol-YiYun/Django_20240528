@@ -1,1 +1,1 @@
-# Django_20240528
+# Django project. Files are at master branch.
