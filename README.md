@@ -1,5 +1,7 @@
-# Django project. Files are at master branch.
+# Django project.  
+Files are at master branch.
 
+  
 Localhost Database: MySQL,  
 HEROKU Database: PostgreSQL,  
 Language: Python,  
