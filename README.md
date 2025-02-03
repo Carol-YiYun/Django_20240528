@@ -8,5 +8,3 @@ Language: Python,
 Web Frame: Django  
 
 
-This website is hosted on HEROKU.  
-Link: https://caroldjango-3579b6d8de99.herokuapp.com/
